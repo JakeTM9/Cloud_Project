@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\ykmem\OneDrive\Desktop\Cloud_Project\.venv"
+VIRTUAL_ENV="C:\Users\ykmem\OneDrive\Desktop\AppDB\Cloud_Project\.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
