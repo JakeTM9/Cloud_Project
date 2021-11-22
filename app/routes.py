@@ -14,7 +14,12 @@ def login():
     return render_template('login.html')
 @app.route('/datapull')
 def datapull():
-    return render_template('datapull.html')
+    user_details = {
+        'name': 'John',
+        'email': 'john@doe.com'
+    }
+    #return render_template('test.html', user=user_details)
+    return render_template('datapull.html', user=user_details)
 
 @app.route('/one')
 def one():
