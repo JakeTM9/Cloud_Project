@@ -1,5 +1,5 @@
 from flask import render_template
-from app import app 
+from app import app, db
 # use decorators to link the function to a url
 @app.route('/')
 def home():
@@ -14,12 +14,14 @@ def login():
     return render_template('login.html')
 @app.route('/datapull')
 def datapull():
-    user_details = {
-        'name': 'John',
-        'email': 'john@doe.com'
+    Collection1 = db.households
+    cursor = Collection1.find({"HSHD_NUM":10})
+    hshd_details = {
+        'id': cursor[0],
+        'HSHD_NUM': cursor[1]
     }
     #return render_template('test.html', user=user_details)
-    return render_template('datapull.html', user=user_details)
+    return render_template('datapull.html', user=hshd_details)
 
 @app.route('/one')
 def one():
