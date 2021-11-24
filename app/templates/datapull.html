@@ -3,6 +3,11 @@
   <head>
     <title style="color:red;">Welcome to the Data pull Search!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      table, th, td {
+      border: 1px solid black;
+    }
+    </style>   
   </head>
   <body>
     <div class="container">
@@ -11,8 +16,29 @@
       <p>Click <a href="/login">here</a> to go back to login page.</p>
       <p>Click <a href="/welcome">here</a> to go to welcome page.</p>
     </div>
-    <div class="container">
-      {{id}}
+    <div class="container"> 
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>HSHD_NUM</th>
+          <th>L</th>
+          <th>AGE_RANGE</th>
+          <th>MARITAL</th>
+          <th>INCOM_RANGE</th>
+          <th>HOME_OWNER</th>
+          <th>HSHD_COMPOSITION</th>
+          <th>HH_SIZE</th>
+          <th>CHILDREN</th>   
+        </tr>
+        <tr>
+          {% for key, value in c1.items() %}
+            <td>{{value}}</td>
+        <!-- <h2>Value: </h2> -->
+          {% endfor %}
+          
+        </tr>
+      </table>
+      <!-- {{id}} -->
     </div>
   </body>
 </html> 

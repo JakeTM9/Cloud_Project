@@ -16,9 +16,13 @@ def login():
 @app.route('/datapull')
 def datapull():
     Collection1 = db.households
+    Collection2 = db.transactions
+    Collection3 = db.products
     cursor = Collection1.find({"HSHD_NUM":10})
-    print(cursor[0]['_id'], file=sys.stderr)
-    return render_template('datapull.html', id = cursor[0]['_id'])
+    cursor2 = Collection2.find({"HSHD_NUM":10})
+    cursor3 = Collection3.find({"PRODUCT_NUM":cursor2[0]["PRODUCT_NUM"]})
+    #print(cursor[0]['_id'], file=sys.stderr)
+    return render_template('datapull.html', c1 = cursor[0])
 
 @app.route('/one')
 def one():
