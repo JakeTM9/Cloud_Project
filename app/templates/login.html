@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Flask Intro - login page</title>
+    <title>Data Pull App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
   </head>
@@ -8,14 +8,11 @@
     <div class="container">
       <h1>Please login</h1>
       <br>
-      <form action="/welcome" method="get">
-        <input type="text" placeholder="Email" name="email" value="{{
-          request.form.email }}">
-        <input type="text" placeholder="Username" name="username" value="{{
-          request.form.username }}">
-         <input type="password" placeholder="Password" name="password" value="{{
-          request.form.password }}">
-          <input class="btn btn-primary" type="submit" value="Login">
+      <form action="{{ url_for('home') }}" method="post">
+        <input type="text" placeholder="Email" name="email">
+        <input type="text" placeholder="Username" name="username">
+        <input type="password" placeholder="Password" name="password">
+        <input class="btn btn-primary" type="submit" value="Login">
       </form>
     </div>
   </body>

@@ -1,9 +1,15 @@
-# Python Flask app on Azure Web App for Containers
+# Description
+An app that queries Houshold, product, and transaction information utilizing flask and mongodb atlus. 
+This app will be pushed to azure and is the final project for the cloud computing class
 
-This is a minimal sample app that demonstrates how to run a Python Flask application on Azure App Service on Linux.
+# Instructions
 
-For more information, please see the [Python on App Service quickstart](https://docs.microsoft.com/en-us/azure/app-service/containers/quickstart-python).
-
-# Contributing
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+The app is easy to run.
+Requirements: Python 3 and pip 
+1. Download the code
+2. Navigate to the CLOUD_PROJECT directory in CMD
+3. run "py -3 -m venv .venv"
+4. run ".venv\scripts\activate"
+5. run "pip install -r requirements.txt"
+6. run "flask run"
+7. Navigate to the address output in the console
