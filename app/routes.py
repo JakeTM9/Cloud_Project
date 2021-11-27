@@ -1,7 +1,10 @@
 from flask import render_template, request, url_for, redirect
+from pymongo import mongo_client
 from app import app, db
 from app import queries
+from werkzeug.utils import secure_filename
 import sys
+import os
 from pandas import DataFrame
 import pandas as pd
 # use decorators to link the function to a url
@@ -76,6 +79,32 @@ def datapullCustom():
     desiredHousehold = request.form.get('desiredHousehold')
     finalDF = queries.standardDatapull(int(desiredHousehold))
     return render_template('datapullCustom.html', household_df = finalDF, desiredHousehold = desiredHousehold)
+
+
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    return render_template('upload.html')
+
+@app.route('/create', methods=["POST"])
+def create():
+    mydb = mongo_client["newatabase"]
+    myCollection = mydb["newData"]
+    for f in request.files.getlist('myfile'):
+        if 'myfile1' in request.files:
+            myFile = request.files['myfile1']
+            mongo_client.save_file(myFile.filename, myFile)
+        if 'myfile2' in request.files:
+            myFile = request.files['myfile2']
+            mongo_client.save_file(myFile.filename, myFile)
+        if 'myfile3' in request.files:
+            myFile = request.files['myfile3']
+            mongo_client.save_file(myFile.filename, myFile)
+            #mongo.db.myFiles.insert({''})
+
+        
+    return 'Upload completed.'
+
 
 @app.route('/one')
 def one():
