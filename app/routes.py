@@ -77,6 +77,17 @@ def datapullCustom():
     finalDF = queries.standardDatapull(int(desiredHousehold))
     return render_template('datapullCustom.html', household_df = finalDF, desiredHousehold = desiredHousehold)
 
+
+@app.route('/customerEngagement', methods = ['GET', 'POST'])
+def customerEngagement():
+    # do stuff
+    return render_template("customerEngagement.html")
+
+@app.route('/demographicFactorsCustomerEngagement', methods = ['GET', 'POST'])
+def demographicFactorsCustomerEngagement():
+    #do stuff
+    return render_template("demographicFactors.html")
+
 @app.route('/one')
 def one():
     return "Q1 will be here"  # return a string
