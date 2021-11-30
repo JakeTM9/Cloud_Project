@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title style="color:red;">Data Pull App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center" style="background-color:DodgerBlue;" style="color:yellowgreen;">Customer Engagement:</h2>
+      <br> 
+      <div class = "intro">
+        <h4 class="text-center">
+          Graph showing how customer engagement changes based on income level
+        </h4>
+      </div>
+      <br>
+      <canvas id="bar-chart" width="800" height="450">
+        <script>
+          function createBarChart()
+          {
+              // Bar chart
+              new Chart(document.getElementById("bar-chart"), {
+                  type: 'bar',
+                  data: {
+                    labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+                    datasets: [
+                      {
+                        label: "Population (millions)",
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        data: [2478,5267,734,784,433]
+                      }
+                    ]
+                  },
+                  options: {
+                    legend: { display: false },
+                    title: {
+                      display: true,
+                      text: 'Predicted world population (millions) in 2050'
+                    }
+                  }
+              });
+          }
+        </script>
+      </canvas>
+    </div>
+  </body>
+</html> 
+
+
+
