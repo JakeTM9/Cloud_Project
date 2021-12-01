@@ -10,6 +10,7 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "88182cd7668f7d16d76980db74ef48911dc30f41"
 app.config["MONGO_URI"] = "mongodb+srv://user:TestOne1@cluster0.4igh6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&tls=true&tlsAllowInvalidCertificates=true"
 UPLOAD_FOLDER = 'static/files'
+ALLOWED_EXTENSIONS = {'csv'}
 app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 mongodb_client = PyMongo(app)
 db = mongodb_client.db

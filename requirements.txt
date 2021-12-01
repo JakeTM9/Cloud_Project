@@ -3,3 +3,4 @@ pymongo
 flask_pymongo
 pymongo[srv]
 pandas
+werkzeug

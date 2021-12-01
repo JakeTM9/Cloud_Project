@@ -5,6 +5,7 @@ from app import queries
 from werkzeug.utils import secure_filename
 import sys
 import os
+import csv
 from pandas import DataFrame
 import pandas as pd
 # use decorators to link the function to a url
@@ -91,28 +92,56 @@ def demographicFactorsCustomerEngagement():
     return render_template("demographicFactors.html")
 
 @app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
-    return render_template('upload.html')
+def upload():
+    return render_template("upload.html")
 
-@app.route('/create', methods=["POST"])
+uploads_dir = os.path.join(app.instance_path, 'uploads')
+os.makedirs(uploads_dir, exist_ok=True)
+
+@app.route('/create', methods=['GET', 'POST'])
 def create():
-    mydb = mongo_client["newatabase"]
-    myCollection = mydb["newData"]
-    for f in request.files.getlist('myfile'):
-        if 'myfile1' in request.files:
-            myFile = request.files['myfile1']
-            mongo_client.save_file(myFile.filename, myFile)
-        if 'myfile2' in request.files:
-            myFile = request.files['myfile2']
-            mongo_client.save_file(myFile.filename, myFile)
-        if 'myfile3' in request.files:
-            myFile = request.files['myfile3']
-            mongo_client.save_file(myFile.filename, myFile)
-            #mongo.db.myFiles.insert({''})
+    if 'myfile1' in request.files:
+        households = request.files['myfile1']
+        households.save(os.path.join(uploads_dir, secure_filename(households.filename)))
+        householdsFileName = secure_filename(households.filename)
+        #householdsDF = pd.read_csv(households)
+        #print(householdsDF, file=sys.stderr)
+    if 'myfile2' in request.files:
+        transactions = request.files['myfile2']
+        transactions.save(os.path.join(uploads_dir, secure_filename(transactions.filename)))
+        transactionsFileName = secure_filename(transactions.filename)
+        #transactionsDF = pd.read_csv(transactions)
+        #print(transactionsDF, file=sys.stderr)
+    if 'myfile3' in request.files:
+        products = request.files['myfile3']
+        products.save(os.path.join(uploads_dir, secure_filename(products.filename)))
+        productsFileName = secure_filename(products.filename)
+        #productsDF = pd.read_csv(products)
+        #print(productsDF, file=sys.stderr)
+    desiredHousehold = request.form['desiredHousehold']
+    path = app.instance_path
+    if('myfile3' in request.files and 'myfile2' in request.files and 'myfile1' in request.files and desiredHousehold != "" and request.method == 'POST'):
+        return redirect(url_for('datapullCustomFiles',  desiredHousehold = desiredHousehold, path = path, householdsFileName = householdsFileName, transactionsFileName = transactionsFileName, productsFileName = productsFileName))
+    return 'Please Try Again with Proper CSV Files'
 
-        
-    return 'Upload completed.'
+@app.route('/datapullCustomFiles', methods=['GET', 'POST'])
+def datapullCustomFiles():
+    print("hi", file=sys.stderr)
+    desiredHousehold = request.args.get('desiredHousehold')
+    path = request.args.get('path')
+    householdsFileName = request.args.get('householdsFileName')
+    transactionsFileName = request.args.get('transactionsFileName')
+    productsFileName = request.args.get('productsFileName')
+    #householdsDF = request.args.get('householdsDF')
+    #transactionsDF = request.args.get('transactionsDF')
+    #productsDF = request.args.get('productsDF')
+    finalDF, col_names = queries.standardDatapullFiles( int(desiredHousehold), path, householdsFileName, transactionsFileName, productsFileName)
+    ##TODO query function for datapull
 
+    #transactionsDF = request.form.get('transactionsDF')
+    #productsDF = request.form.get('productsDF')
+    #finalDF = ""#queries.standardDatapull(int(desiredHousehold))
+    return render_template('datapullCustomFiles.html',desiredHousehold = desiredHousehold, finalDF = finalDF, col_names = col_names)
 
 @app.route('/one')
 def one():

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title style="color:red;">Data Pull App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      table, th, td {
+      border: 1px solid black;
+    }
+    </style>   
+  </head>
+  <body>
+    <div class="container">
+      <h1 style="background-color:DodgerBlue;" style="color:yellowgreen;">DataPull for Household {{desiredHousehold}}:</h2>
+      <br>
+    </div><!---->
+    
+    <div class="container"> 
+      <p>Click <a href="/home">here</a> to go to back.</p>
+      <table>
+        <tr>
+          <th>HouseHold Number</th>
+          <th>Basket Number</th>
+          <th>Date of Purchase</th>
+          <th>Product Number</th>
+          <th>Department</th>
+          <th>Commodity</th>
+        </tr>
+        
+          {% for index, row in finalDF.iterrows() %}
+            <tr>
+                <td>{{row[col_names[0]]}}</td>
+                <td>{{row[col_names[1]]}}</td>
+                <td>{{row[col_names[2]]}}</td>
+                <td>{{row[col_names[3]]}}</td>
+                <td>{{row[col_names[4]]}}</td>
+                <td>{{row[col_names[5]]}}</td>
+            </tr>
+        <!-- <h2>Value: </h2> -->
+          {% endfor %}
+          
+        
+      </table>
+      
+      <!-- {{id}} -->
+    </div>
+  </body>
+</html> 
