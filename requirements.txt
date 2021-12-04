@@ -1,6 +1,8 @@
 flask
+dnspython
 pymongo
 flask_pymongo
 pymongo[srv]
 pandas
 werkzeug
+pymongo[tls,srv]

@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\ringe\vscode\cloudProj\working7\Cloud_Project\.venv"
+VIRTUAL_ENV="C:\Users\ringe\vscode\cloudProj\working8\Cloud_Project\.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
