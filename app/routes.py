@@ -9,6 +9,9 @@ import csv
 from pandas import DataFrame
 import pandas as pd
 # use decorators to link the function to a url
+uploads_dir = os.path.join(app.instance_path, 'uploads')
+os.makedirs(uploads_dir, exist_ok=True)
+
 @app.route('/', methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
@@ -45,11 +48,8 @@ def datapullCustom():
 
 @app.route('/customerEngagement', methods = ['GET', 'POST'])
 def customerEngagement():
-    
-    finalDF = queries.getSpendData()
-    #finalDF = finalDF
-    #print(finalDF,file=sys.stderr)
-    return render_template("customerEngagement.html", finalDF = finalDF)
+    image_filename = os.path.join(uploads_dir, secure_filename('Question1_CC.png'))
+    return render_template("customerEngagement.html", q1_image = image_filename)
 
 @app.route('/demographicFactorsCustomerEngagement', methods = ['GET', 'POST'])
 def demographicFactorsCustomerEngagement():
@@ -60,8 +60,7 @@ def demographicFactorsCustomerEngagement():
 def upload():
     return render_template("upload.html")
 
-uploads_dir = os.path.join(app.instance_path, 'uploads')
-os.makedirs(uploads_dir, exist_ok=True)
+
 
 @app.route('/create', methods=['GET', 'POST'])
 def create():
@@ -93,13 +92,6 @@ def datapullCustomFiles():
     finalDF = queries.standardDatapullFiles( int(desiredHousehold), path, householdsFileName, transactionsFileName, productsFileName)
     return render_template('datapullCustomFiles.html',desiredHousehold = desiredHousehold, finalDF = finalDF)
 
-@app.route('/one')
-def one():
-    return "Q1 will be here"  # return a string
-
-@app.route('/two')
-def two():
-    return "Q2 will be here"  # return a string
 # start the server with the 'run()' method
 if __name__ == '__main__':
     app.run(debug=True)

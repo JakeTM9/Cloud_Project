@@ -4,7 +4,7 @@ from flask import Flask, render_template
 from flask_pymongo import PyMongo
 
 # create the application object
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="", static_folder="templates")
 
 #mongoDB stuff
 app.config["SECRET_KEY"] = "88182cd7668f7d16d76980db74ef48911dc30f41"
