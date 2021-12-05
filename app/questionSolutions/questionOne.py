@@ -46,7 +46,9 @@ print(totalHouseHoldSpendingPerDay)
 averageHouseHoldSpendingPerDay = totalHouseHoldSpendingPerDay
 for index, row in averageHouseHoldSpendingPerDay.iterrows():
     averageHouseHoldSpendingPerDay.loc[index,'SPEND'] = averageHouseHoldSpendingPerDay.iloc[index]['SPEND'] / len(houseHoldsDF)
+    averageHouseHoldSpendingPerDay.loc[index,'PURCHASE_'] = averageHouseHoldSpendingPerDay.iloc[index]['PURCHASE_'].date()
 #print(len(houseHoldsDF))
+#averageHouseHoldSpendingPerDay["PURCHASE_"] =
 print(averageHouseHoldSpendingPerDay)
 
 averageHouseHoldSpendingPerDay.to_excel("averageHouseHoldSpendingPerDay.xlsx", index = False, header=True)
