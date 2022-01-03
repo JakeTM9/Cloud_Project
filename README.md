@@ -1,6 +1,8 @@
 # Description
 An app that queries Houshold, product, and transaction information utilizing flask and mongodb atlus. 
-This app will be pushed to azure and is the final project for the cloud computing class
+This app will be pushed to azure and is the final project for the cloud computing class\
+
+Can be seen here: https://team-nimbus-project.azurewebsites.net/
 
 # Instructions
 
